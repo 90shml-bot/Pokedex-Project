@@ -9,13 +9,12 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 // Static folders
-app.use('/home', express.static(path.join(__dirname, 'Home')))
 app.use('/about', express.static(path.join(__dirname, 'About')))
 app.use('/pokemon', express.static(path.join(__dirname, 'Pokemon')))
 
 // Routes
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'Home', 'home.html'))
+    res.sendFile(path.join(__dirname, 'index.html'))
 })
 
 // About page
