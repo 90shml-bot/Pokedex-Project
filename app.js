@@ -9,6 +9,7 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 // Static folders
+app.use(express.static(__dirname));
 app.use('/about', express.static(path.join(__dirname, 'About')))
 app.use('/pokemon', express.static(path.join(__dirname, 'Pokemon')))
 
