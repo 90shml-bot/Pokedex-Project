@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pokédex</title>
+    <link rel="stylesheet" href="pokemon.css" />
+</head>
+
+<body>
+
+    <header class="pokedex-header">
+        <h1>Poké<span>Dex</span></h1>
+        <p>Explore the original Kanto Pokémon</p>
+
+        <input type="text" id="search" placeholder="Search Pokémon..." />
+    </header>
+
+    <main class="pokemon-grid" id="pokemonGrid">
+        <!-- Pokémon cards injected by JS -->
+    </main>
+
+    <!-- Pokémon Details Modal -->
+    <div id="pokemonModal" class="modal hidden">
+        <div class="modal-content">
+            <button class="close-btn" id="closeModal">✕</button>
+
+            <img id="modalImg" class="modal-img" />
+            <h2 id="modalName"></h2>
+            <p id="modalId"></p>
+
+            <div class="pokemon-types" id="modalTypes"></div>
+
+            <p id="modalEntry" class="pokedex-entry"></p>
+        </div>
+    </div>
+
+
+
+
+    <script src="pokedex.js"></script>
+</body>
+
+</html>
