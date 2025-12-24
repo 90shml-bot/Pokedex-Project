@@ -299,7 +299,7 @@ const pokemon = [
     { id: 298, name: "Azurill", types: ["normal", "fairy"], entry: "Its tail bounces like a rubber ball. It flings that tail around to fight opponents bigger than itself." },
     { id: 299, name: "Nosepass", types: ["rock"], entry: "Its nose is a magnet. As a result, this Pokémon always keeps its face pointing north." },
     { id: 300, name: "Skitty", types: ["normal"], entry: "It is fascinated by round objects. It can't stop playing with them until it tires and falls asleep." }
-
+]
 
 
 
