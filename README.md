@@ -13,15 +13,16 @@ Key features include:
 - Viewing detailed stats, types, abilities, evolutions, and more
 - Responsive design for mobile and desktop
 
-(Replace this section with more specific features from your project, e.g., offline support, favorites, etc.)
+What I personally really like about this project is how you can see the actual id number of each Pokemon matches their Pokedex number.
+Just a small detail I added.
 
 
 
 ## Technologies Used
 
-- Frontend: [e.g., React, HTML/CSS/JS, Flutter, etc.]
+- Frontend: [e.g. HTML/CSS/JS, etc.]
 - API: [PokeAPI](https://pokeapi.co/)
-- Other libraries/tools: [e.g., Axios/Fetch, Redux, Tailwind CSS, etc.]
+
 
 
 
