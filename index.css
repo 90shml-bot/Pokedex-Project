@@ -13,7 +13,7 @@ body {
 
 /* Navbar */
 .navbar {
-    background: #111;
+    background: #7684a4;
     padding: 15px 30px;
     display: flex;
     gap: 20px;
@@ -110,7 +110,7 @@ body {
 .footer {
     --footer-height: auto; /* default: auto, adjusts to content */
     
-    background: #111;
+    background: #7684a4;
     display: flex;
     justify-content: center;
     align-items: flex-start;
