@@ -11,10 +11,18 @@
 <body>
 
     <header class="pokedex-header">
-        <h1>Poké<span>Dex</span></h1>
-        <p>Explore the original Kanto Pokémon</p>
+        <h1><span class="pokedex-poke">Poké</span><span>Dex</span></h1>
+        <p>✨ Explore the original Kanto Pokémon ✨</p>
 
-        <input type="text" id="search" placeholder="Search Pokémon..." />
+        <div class="controls">
+            <input type="text" id="search" placeholder="Search Pokémon..." />
+
+            <label class="shiny-toggle">
+                <input type="checkbox" id="shinyToggle" />
+                <span class="toggle-slider"></span>
+                <span class="toggle-label">✨ Shiny</span>
+            </label>
+        </div>
     </header>
 
     <main class="pokemon-grid" id="pokemonGrid">
@@ -26,7 +34,9 @@
         <div class="modal-content">
             <button class="close-btn" id="closeModal">✕</button>
 
-            <img id="modalImg" class="modal-img" />
+            <div class="modal-img-container">
+                <img id="modalImg" class="modal-img" />
+            </div>
             <h2 id="modalName"></h2>
             <p id="modalId"></p>
 
@@ -35,9 +45,6 @@
             <p id="modalEntry" class="pokedex-entry"></p>
         </div>
     </div>
-
-
-
 
     <script src="pokedex.js"></script>
 </body>

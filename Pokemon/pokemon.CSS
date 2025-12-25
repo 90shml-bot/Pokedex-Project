@@ -8,15 +8,79 @@ body {
     background: linear-gradient(135deg, #ffcb05, #3b4cca);
     min-height: 100vh;
     color: #333;
+    margin: 0;
+    min-height: 100vh;
+    color: #333;
+
+    /* Background image */
+    background: url('Latias\ Ruby.jpg') no-repeat center center fixed;
+    background-size: cover;
+
+    /* Optional: fallback gradient if image doesn't load */
+    /* background: linear-gradient(135deg, #ffcb05, #3b4cca); */
 }
 
 .pokedex-header {
     text-align: center;
-    padding: 30px;
+    padding: 30px 20px;
+    margin: 20px auto; /* auto left/right centers it */
+    max-width: 1000px;  /* or whatever width you prefer */
+    background: linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%);
+    border-radius: 30px 30px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    position: relative;
+    overflow: hidden;
+    pointer-events: auto;
+}
+
+
+.pokedex-header::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,203,5,0.1) 0%, transparent 70%);
+    animation: pulse 4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.1); opacity: 0.8; }
 }
 
 .pokedex-header h1 {
-    font-size: 3rem;
+    font-size: 3.5rem;
+    margin-bottom: 5px;
+    position: relative;
+    z-index: 1;
+    text-shadow: 3px 3px 0px rgba(255,203,5,0.3), 
+                -1px -1px 0px rgba(59,76,202,0.2);
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.pokedex-header h1::before {
+    content: "💧";
+    position: absolute;
+    left: 100px;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+.pokedex-header h1::after {
+    content: "🔥";
+    position: absolute;
+    right: 100px;
+    animation: bounce 2s ease-in-out infinite 1s;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.pokedex-header h1 .pokedex-poke {
     color: #2a75bb;
 }
 
@@ -24,13 +88,81 @@ body {
     color: #ff0000;
 }
 
-.pokedex-header input {
-    margin-top: 15px;
+.pokedex-header > p {
+    margin-top: 0;
+    margin-bottom: 25px;
+    font-size: 1.1rem;
+    color: #555;
+    font-style: italic;
+    position: relative;
+    z-index: 1;
+}
+
+/* Controls Container */
+.controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    position: relative; /* create a new stacking context */
+    z-index: 1;         /* bring it above the ::before */
+}
+
+.pokedex-header input[type="text"] {
     padding: 10px 15px;
     width: 260px;
     border-radius: 999px;
     border: none;
     font-size: 1rem;
+}
+
+/* Shiny Toggle */
+.shiny-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.shiny-toggle input[type="checkbox"] {
+    display: none;
+}
+
+.toggle-slider {
+    position: relative;
+    width: 50px;
+    height: 26px;
+    background: #ccc;
+    border-radius: 999px;
+    transition: background 0.3s;
+}
+
+.toggle-slider::before {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: 50%;
+    top: 3px;
+    left: 3px;
+    transition: transform 0.3s;
+}
+
+.shiny-toggle input:checked + .toggle-slider {
+    background: #ffd700;
+}
+
+.shiny-toggle input:checked + .toggle-slider::before {
+    transform: translateX(24px);
+}
+
+.toggle-label {
+    font-weight: bold;
+    color: #2a75bb;
+    font-size: 1.1rem;
 }
 
 .pokemon-grid {
@@ -46,17 +178,33 @@ body {
     padding: 20px;
     text-align: center;
     box-shadow: 0 12px 30px rgba(0,0,0,0.2);
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
 }
 
 .pokemon-card:hover {
     transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+}
+
+/* Image Container for better control */
+.pokemon-img-container {
+    width: 96px;
+    height: 96px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
 }
 
 .pokemon-img {
-    width: 96px;
-    height: 96px;
+    max-width: 96px;
+    max-height: 96px;
+    width: auto;
+    height: auto;
     image-rendering: pixelated;
+    object-fit: contain;
 }
 
 .pokemon-name {
@@ -69,6 +217,7 @@ body {
     display: flex;
     justify-content: center;
     gap: 8px;
+    flex-wrap: wrap;
 }
 
 .pokemon-type {
@@ -76,6 +225,7 @@ body {
     border-radius: 999px;
     font-size: 0.75rem;
     color: white;
+    font-weight: 600;
 }
 
 /* Modal background */
@@ -99,7 +249,8 @@ body {
     background: #f5f5f5;
     border-radius: 20px;
     padding: 30px;
-    width: 300px;
+    width: 90%;
+    max-width: 350px;
     text-align: center;
     position: relative;
     box-shadow: 0 20px 40px rgba(0,0,0,0.4);
@@ -118,20 +269,34 @@ body {
     }
 }
 
+.modal-img-container {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
 .modal-img {
-    width: 120px;
-    height: 120px;
+    max-width: 150px;
+    max-height: 150px;
+    width: auto;
+    height: auto;
     image-rendering: pixelated;
+    object-fit: contain;
 }
 
 #modalName {
-    margin: 10px 0 5px;
-    font-size: 1.6rem;
+    margin: 15px 0 5px;
+    font-size: 1.8rem;
 }
 
 #modalId {
     color: #666;
     margin-bottom: 15px;
+    font-size: 1.1rem;
 }
 
 .close-btn {
@@ -140,20 +305,27 @@ body {
     right: 12px;
     background: none;
     border: none;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     cursor: pointer;
+    color: #666;
+    transition: color 0.2s;
+}
+
+.close-btn:hover {
+    color: #000;
 }
 
 .pokedex-entry {
     margin-top: 15px;
     font-size: 0.9rem;
-    line-height: 1.4;
+    line-height: 1.6;
     color: #333;
     background: #ffffff;
-    padding: 12px;
+    padding: 15px;
     border-radius: 10px;
     box-shadow: inset 0 0 5px rgba(0,0,0,0.15);
 }
+
 
 
 /* TYPE COLORS */
@@ -173,3 +345,5 @@ body {
 .ghost { background:#735797; }
 .steel { background:#b7b7ce; color:#333; }
 .fairy { background:#d685ad; }
+.dragon { background:#6f35fc; }
+.dark { background:#705746; }

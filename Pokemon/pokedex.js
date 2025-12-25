@@ -305,6 +305,7 @@ const pokemon = [
 
 const grid = document.getElementById("pokemonGrid");
 const search = document.getElementById("search");
+const shinyToggle = document.getElementById("shinyToggle");
 
 const modal = document.getElementById("pokemonModal");
 const modalImg = document.getElementById("modalImg");
@@ -312,10 +313,21 @@ const modalName = document.getElementById("modalName");
 const modalId = document.getElementById("modalId");
 const modalTypes = document.getElementById("modalTypes");
 const closeModal = document.getElementById("closeModal");
-
 const modalEntry = document.getElementById("modalEntry");
 
+let isShiny = false;
 
+// Helper function to get animated sprite URL
+function getAnimatedSprite(id, shiny = false) {
+    const shinyPath = shiny ? 'shiny/' : '';
+    return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${shinyPath}${id}.gif`;
+}
+
+// Fallback to static if animated doesn't load
+function getStaticSprite(id, shiny = false) {
+    const shinyPath = shiny ? 'shiny/' : '';
+    return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${shinyPath}${id}.png`;
+}
 
 function render(list) {
     grid.innerHTML = "";
@@ -323,14 +335,31 @@ function render(list) {
         const card = document.createElement("div");
         card.className = "pokemon-card";
 
-        card.innerHTML = `
-            <img class="pokemon-img"
-                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${p.id}.png">
-            <div class="pokemon-name">${p.name}</div>
-            <div class="pokemon-types">
-                ${p.types.map(t => `<span class="pokemon-type ${t}">${t}</span>`).join("")}
-            </div>
-        `;
+        const imgContainer = document.createElement("div");
+        imgContainer.className = "pokemon-img-container";
+
+        const img = document.createElement("img");
+        img.className = "pokemon-img";
+        img.src = getAnimatedSprite(p.id, isShiny);
+
+        // Fallback to static sprite if animated doesn't load
+        img.onerror = function () {
+            this.src = getStaticSprite(p.id, isShiny);
+        };
+
+        imgContainer.appendChild(img);
+
+        const nameDiv = document.createElement("div");
+        nameDiv.className = "pokemon-name";
+        nameDiv.textContent = p.name;
+
+        const typesDiv = document.createElement("div");
+        typesDiv.className = "pokemon-types";
+        typesDiv.innerHTML = p.types.map(t => `<span class="pokemon-type ${t}">${t}</span>`).join("");
+
+        card.appendChild(imgContainer);
+        card.appendChild(nameDiv);
+        card.appendChild(typesDiv);
 
         card.addEventListener("click", () => openModal(p));
         grid.appendChild(card);
@@ -338,7 +367,13 @@ function render(list) {
 }
 
 function openModal(pokemon) {
-    modalImg.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`;
+    modalImg.src = getAnimatedSprite(pokemon.id, isShiny);
+
+    // Fallback for modal image too
+    modalImg.onerror = function () {
+        this.src = getStaticSprite(pokemon.id, isShiny);
+    };
+
     modalName.textContent = pokemon.name;
     modalId.textContent = `#${pokemon.id.toString().padStart(3, "0")}`;
 
@@ -346,11 +381,10 @@ function openModal(pokemon) {
         .map(t => `<span class="pokemon-type ${t}">${t}</span>`)
         .join("");
 
-    modalEntry.textContent = pokemon.entry; // <-- Make sure this line is included
+    modalEntry.textContent = pokemon.entry;
 
     modal.classList.remove("hidden");
 }
-
 
 closeModal.addEventListener("click", () => {
     modal.classList.add("hidden");
@@ -362,9 +396,14 @@ modal.addEventListener("click", e => {
     }
 });
 
-
 search.addEventListener("input", e => {
     const value = e.target.value.toLowerCase();
+    render(pokemon.filter(p => p.name.toLowerCase().includes(value)));
+});
+
+shinyToggle.addEventListener("change", e => {
+    isShiny = e.target.checked;
+    const value = search.value.toLowerCase();
     render(pokemon.filter(p => p.name.toLowerCase().includes(value)));
 });
 
