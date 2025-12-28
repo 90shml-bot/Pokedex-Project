@@ -118,6 +118,22 @@ body {
     50% { transform: scale(1.1); }
 }
 
+.pokeball-icon {
+    margin-bottom: 20px;
+    animation: bounce 5s ease-in-out infinite;
+}
+
+.pokeball-icon img {
+    width: 80px;
+    height: 80px;
+    filter: drop-shadow(0 0 15px rgba(255, 203, 5, 0.5));
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
 /* Title and subtitle */
 .about-card h1 {
     font-size: 3rem;

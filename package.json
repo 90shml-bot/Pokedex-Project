@@ -9,7 +9,8 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "devv": "nodemon app js"
+    "devv": "nodemon app js",
+    "start": "node app.js"
   },
   "keywords": [],
   "author": "",
