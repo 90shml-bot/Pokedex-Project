@@ -11,6 +11,44 @@ body {
     color: white;
 }
 
+/* Navbar toggle button */
+.navbar-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 200;
+    background: rgba(118, 132, 164, 0.95);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-toggle:hover {
+    background: rgba(138, 152, 184, 0.95);
+    transform: scale(1.05);
+    border-color: rgba(255, 203, 5, 0.6);
+}
+
+.toggle-icon {
+    color: white;
+    font-size: 1.5rem;
+    display: block;
+    line-height: 1;
+}
+
+/* Adjust toggle button when navbar is hidden */
+.navbar-toggle.navbar-hidden {
+    background: rgba(255, 203, 5, 0.95);
+}
+
+.navbar-toggle.navbar-hidden:hover {
+    background: rgba(255, 203, 5, 1);
+}
+
 /* Navbar with enhanced styling */
 .navbar {
     background: rgba(118, 132, 164, 0.95);
@@ -23,6 +61,14 @@ body {
     position: sticky;
     top: 0;
     z-index: 100;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+/* Hidden state for navbar */
+.navbar.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
 }
 
 .navbar a {
@@ -69,12 +115,18 @@ body {
     align-items: center;
     text-align: center;
     position: relative;
+    transition: height 0.4s ease;
     
     background-image: url('Images/Ash\ Ketchum.jpg');
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
     background-color: #232526;
+}
+
+/* Expanded hero when navbar is hidden */
+.hero.expanded {
+    height: 100vh;
 }
 
 /* Gradient overlay for better text contrast */
@@ -200,85 +252,89 @@ body {
     box-shadow: 0 12px 30px rgba(255, 255, 255, 0.3);
 }
 
-/* Footer with enhanced styling */
+/* Footer with quote styling */
 .footer {
     background: linear-gradient(180deg, rgba(118, 132, 164, 0.95) 0%, rgba(98, 112, 144, 0.95) 100%);
     backdrop-filter: blur(10px);
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    padding: 50px 20px;
+    align-items: center;
+    padding: 60px 20px;
     width: 100%;
     box-sizing: border-box;
     box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
 }
 
-/* Features grid */
-.features {
-    display: flex;
-    justify-content: center;
-    align-items: stretch;
-    gap: 35px;
-    flex-wrap: wrap;
-    max-width: 1200px;
-}
-
-/* Enhanced feature cards */
-.card {
-    background: rgba(255, 255, 255, 0.15);
-    padding: 35px 30px;
-    border-radius: 20px;
-    width: 240px;
+/* Quote container */
+.quote-container {
     text-align: center;
-    backdrop-filter: blur(15px);
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    max-width: 700px;
+    animation: fadeIn 1s ease-out 0.6s backwards;
+}
+
+.pokeball-icon {
+    margin-bottom: 20px;
+    animation: bounce 5s ease-in-out infinite;
+}
+
+.pokeball-icon img {
+    width: 80px;
+    height: 80px;
+    filter: drop-shadow(0 0 15px rgba(255, 203, 5, 0.5));
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.quote {
+    font-size: 1.8rem;
+    font-style: italic;
+    font-weight: 500;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-bottom: 15px;
+    line-height: 1.6;
     position: relative;
-    overflow: hidden;
 }
 
-.card::before {
-    content: '';
+.quote::before {
+    content: '"';
+    font-size: 3rem;
+    color: #ffcb05;
     position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(
-        45deg,
-        transparent,
-        rgba(255, 255, 255, 0.1),
-        transparent
-    );
-    transform: rotate(45deg);
-    transition: all 0.6s;
+    left: -30px;
+    top: -10px;
+    opacity: 0.5;
 }
 
-.card:hover::before {
-    left: 100%;
+.quote::after {
+    content: '"';
+    font-size: 3rem;
+    color: #ffcb05;
+    position: absolute;
+    right: -30px;
+    bottom: -20px;
+    opacity: 0.5;
 }
 
-.card:hover {
-    transform: translateY(-10px) scale(1.05);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-    border-color: rgba(255, 203, 5, 0.6);
-    background: rgba(255, 255, 255, 0.25);
+.quote-author {
+    font-size: 1.1rem;
+    color: #ffcb05;
+    font-weight: 600;
+    opacity: 0.9;
 }
 
-.card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 5px;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-}
-
-.card p {
-    font-size: 1rem;
-    opacity: 0.95;
-    line-height: 1.5;
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Animations */
@@ -322,13 +378,29 @@ body {
     .navbar {
         padding: 15px 20px;
     }
-    
-    .features {
-        gap: 20px;
+
+    .navbar-toggle {
+        top: 15px;
+        right: 15px;
+        padding: 8px 12px;
     }
-    
-    .card {
-        width: 100%;
-        max-width: 300px;
+
+    .toggle-icon {
+        font-size: 1.3rem;
+    }
+
+    .quote {
+        font-size: 1.3rem;
+        padding: 0 20px;
+    }
+
+    .quote::before,
+    .quote::after {
+        display: none;
+    }
+
+    .pokeball-icon img {
+        width: 60px;
+        height: 60px;
     }
 }
