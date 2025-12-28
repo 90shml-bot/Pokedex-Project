@@ -11,136 +11,324 @@ body {
     color: white;
 }
 
-/* Navbar */
+/* Navbar with enhanced styling */
 .navbar {
-    background: #7684a4;
-    padding: 15px 30px;
+    background: rgba(118, 132, 164, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 18px 30px;
     display: flex;
     gap: 20px;
-    justify-content: space-around;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .navbar a {
     color: white;
     text-decoration: none;
-    opacity: 0.8;
+    opacity: 0.85;
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding: 8px 20px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.navbar a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background: #ffcb05;
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
+}
+
+.navbar a:hover::after,
+.navbar a.active::after {
+    width: 80%;
 }
 
 .navbar a:hover,
 .navbar a.active {
     opacity: 1;
-    text-decoration: underline;
+    background: rgba(255, 255, 255, 0.1);
 }
 
-/* Hero section */
-
+/* Hero section with enhanced overlay */
 .hero {
-    height: 70vh;
+    height: 75vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-
-    /* Full background image */
+    position: relative;
+    
     background-image: url('Images/Ash\ Ketchum.jpg');
-    /* Fill the header exactly (no blank areas or cropping). This will
-        stretch the image to match the header aspect ratio. */
-    background-size: 100% 100%;
+    background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
-    /* fallback/background color to blend any minor artifacts */
     background-color: #232526;
-
-    color: #121212d0;
 }
 
+/* Gradient overlay for better text contrast */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(42, 117, 187, 0.6) 0%,
+        rgba(255, 203, 5, 0.3) 50%,
+        rgba(35, 37, 38, 0.7) 100%
+    );
+    z-index: 1;
+}
 
+/* Dark vignette effect */
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+        ellipse at center,
+        transparent 0%,
+        rgba(0, 0, 0, 0.4) 100%
+    );
+    z-index: 2;
+}
+
+.hero h1,
+.hero p,
+.hero .buttons {
+    position: relative;
+    z-index: 3;
+}
 
 .hero h1 {
-    font-size: 3rem;
-    margin-bottom: 10px;
+    font-size: 4rem;
+    margin-bottom: 15px;
+    font-weight: 700;
+    text-shadow: 
+        3px 3px 6px rgba(0, 0, 0, 0.8),
+        0 0 30px rgba(255, 203, 5, 0.5);
+    color: #ffffff;
+    animation: fadeInDown 0.8s ease-out;
+    letter-spacing: 2px;
 }
 
 .hero p {
-    font-size: 1.2rem;
-    opacity: 0.85;
-    margin-bottom: 30px;
+    font-size: 1.4rem;
+    margin-bottom: 40px;
+    font-weight: 400;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+    color: #f0f0f0;
+    animation: fadeInUp 0.8s ease-out 0.2s backwards;
 }
 
-/* Buttons */
+/* Enhanced buttons */
 .buttons {
     display: flex;
-    gap: 20px;
+    gap: 25px;
+    animation: fadeInUp 0.8s ease-out 0.4s backwards;
 }
 
 .btn {
-    padding: 14px 28px;
-    border-radius: 30px;
+    padding: 16px 36px;
+    border-radius: 50px;
     text-decoration: none;
-    font-weight: bold;
-    transition: 0.3s;
+    font-weight: 600;
+    font-size: 1.05rem;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn:hover::before {
+    width: 300px;
+    height: 300px;
 }
 
 .primary {
-    background: #ffcb05;
+    background: linear-gradient(135deg, #ffcb05 0%, #f7b500 100%);
     color: #2a75bb;
-    border: 2px solid;
-    border-color:#111010 ;
-
+    border: 3px solid #2a75bb;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
 }
 
 .primary:hover {
-    transform: scale(1.05);
-    color: #2a75bb;
+    transform: scale(1.08) translateY(-3px);
+    box-shadow: 0 12px 30px rgba(255, 203, 5, 0.5);
 }
 
 .secondary {
-    border: 2px solid;
-    color: #111010;
-    background-color: #9b9b9b;
+    border: 3px solid #ffffff;
+    color: #ffffff;
+    background: rgba(155, 155, 155, 0.3);
+    backdrop-filter: blur(5px);
 }
 
 .secondary:hover {
-    background: rgb(114, 111, 111);
-    /* color: rgb(188, 186, 193); */
+    background: rgba(114, 111, 111, 0.6);
+    transform: scale(1.08) translateY(-3px);
+    box-shadow: 0 12px 30px rgba(255, 255, 255, 0.3);
 }
 
-    /* Footer styling */
+/* Footer with enhanced styling */
 .footer {
-    --footer-height: auto; /* default: auto, adjusts to content */
-    
-    background: #7684a4;
+    background: linear-gradient(180deg, rgba(118, 132, 164, 0.95) 0%, rgba(98, 112, 144, 0.95) 100%);
+    backdrop-filter: blur(10px);
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    padding: 24px 20px;
+    padding: 50px 20px;
     width: 100%;
     box-sizing: border-box;
-    height: var(--footer-height); /* uses the CSS variable */
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
 }
 
-
-/* Features inside footer */
+/* Features grid */
 .features {
     display: flex;
     justify-content: center;
-    align-items: stretch;       /* makes all cards same height automatically */
-    gap: 25px;
-    flex-wrap: wrap;           
+    align-items: stretch;
+    gap: 35px;
+    flex-wrap: wrap;
+    max-width: 1200px;
 }
 
-/* Feature cards remain same */
+/* Enhanced feature cards */
 .card {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 30px 30px 20px 30px;
-    border-radius: 16px;
-    width: 220px;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 35px 30px;
+    border-radius: 20px;
+    width: 240px;
     text-align: center;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(15px);
     display: flex;
-    flex-direction: column;    
-    gap: 15px;                 
+    flex-direction: column;
+    gap: 15px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
 }
 
+.card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    transform: rotate(45deg);
+    transition: all 0.6s;
+}
 
+.card:hover::before {
+    left: 100%;
+}
+
+.card:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 203, 5, 0.6);
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.card p {
+    font-size: 1rem;
+    opacity: 0.95;
+    line-height: 1.5;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero p {
+        font-size: 1.1rem;
+    }
+    
+    .buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .navbar {
+        padding: 15px 20px;
+    }
+    
+    .features {
+        gap: 20px;
+    }
+    
+    .card {
+        width: 100%;
+        max-width: 300px;
+    }
+}

@@ -3,96 +3,74 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>About Us</title>
+    <title>About - Pokédex Project</title>
     <link rel="stylesheet" href="/About/about.css">
 </head>
 
 <body>
+    <!-- Navbar matching home page -->
+    <nav class="navbar">
+        <a href="/">Home</a>
+        <a href="/about" class="active">About</a>
+        <a href="/pokemon">Pokémon</a>
+    </nav>
 
-    <div class="about-card">
-        <h1>About This Project</h1>
-        <p class="subtitle">Node.js • Express • Learning by Building</p>
+    <!-- Main content -->
+    <div class="content-wrapper">
+        <div class="about-card">
+            <div class="icon">⚡</div>
+            <h1>About This Project</h1>
+            <p class="subtitle">Node.js • Express • Learning by Building</p>
 
-        <p>
-            This website was created as part of a hands-on journey into
-            backend development using <strong>Node.js</strong> and
-            <strong>Express</strong>.
-        </p>
+            <div class="description">
+                <p>
+                    This website was created as part of a hands-on journey into
+                    backend development using <strong>Node.js</strong> and
+                    <strong>Express</strong>.
+                </p>
 
-        <p>
-            The focus is on understanding routing, servers, file handling,
-            and how the backend communicates with the browser.
-        </p>
+                <p>
+                    The focus is on understanding routing, servers, file handling,
+                    and how the backend communicates with the browser through
+                    real-world application development.
+                </p>
+            </div>
 
-        <div class="tech-list">
-            <div class="tech">Node.js</div>
-            <div class="tech">Express</div>
-            <div class="tech">HTML</div>
-            <div class="tech">CSS</div>
+            <div class="tech-section">
+                <h3>Technologies Used</h3>
+                <div class="tech-list">
+                    <div class="tech">Node.js</div>
+                    <div class="tech">Express</div>
+                    <div class="tech">HTML5</div>
+                    <div class="tech">CSS3</div>
+                    <div class="tech">JavaScript</div>
+                </div>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">🚀</div>
+                    <h4>Fast Backend</h4>
+                    <p>Express server with optimized routing</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📁</div>
+                    <h4>Static Files</h4>
+                    <p>Proper asset management and delivery</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🎨</div>
+                    <h4>Modern UI</h4>
+                    <p>Responsive design with CSS animations</p>
+                </div>
+            </div>
+
+            <footer class="about-footer">
+                © 2025 • Built while learning Fullstack fundamentals
+            </footer>
         </div>
-
-        <footer>
-            © 2025 • Built while learning Fullstack fundamentals
-        </footer>
     </div>
 
 </body>
 
 </html>
-
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: Arial, Helvetica, sans-serif;
-    }
-
-    body {
-        background: linear-gradient(135deg, #1e3c72, #2a5298);
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #333;
-    }
-
-    .container {
-        background: white;
-        width: 90%;
-        max-width: 600px;
-        padding: 40px;
-        border-radius: 12px;
-        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-        text-align: center;
-    }
-
-    h1 {
-        font-size: 2.2rem;
-        margin-bottom: 10px;
-        color: #1e3c72;
-    }
-
-    .subtitle {
-        font-size: 1rem;
-        color: #666;
-        margin-bottom: 30px;
-    }
-
-    .card {
-        background: #f5f7fa;
-        padding: 25px;
-        border-radius: 10px;
-        margin-bottom: 30px;
-    }
-
-    .card p {
-        margin-bottom: 15px;
-        line-height: 1.6;
-    }
-
-    footer {
-        font-size: 0.9rem;
-        color: #888;
-    }
-</style>
